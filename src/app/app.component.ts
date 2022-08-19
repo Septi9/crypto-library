@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StockMarketData } from './models/stock-market.model';
-import { StockMarketService } from './services/stock-market.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +7,8 @@ import { StockMarketService } from './services/stock-market.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private stockMarketService: StockMarketService) {}
-
-  stockMarketData?: StockMarketData[];
+  constructor() { }
 
   ngOnInit(): void {
-    this.stockMarketService.getData().subscribe((stockMarketData) => this.stockMarketData = stockMarketData);
-  }
-
-  ngDoCheck(): void {
-    console.log('data', this.stockMarketData);
   }
 }

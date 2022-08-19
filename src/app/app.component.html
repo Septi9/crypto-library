@@ -1,10 +1,2 @@
-<div class="container">
-    <div class="table" *ngFor="let item of stockMarketData">
-    <div class="id">{{item.id}}</div>
-    <div class="name">{{item.name}}</div>
-    <div class="image"><img src="{{item.image}}" alt="image"></div>
-    <div class="price">{{item.current_price}}</div>
-    </div>
-</div>
-
+<app-table></app-table>
 <router-outlet></router-outlet>
