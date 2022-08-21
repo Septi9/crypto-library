@@ -24,7 +24,6 @@ export class TableComponent implements OnInit {
 
   onEnteredTextChanged(searchValue: string) {
     this.searchText = searchValue;
-    console.log(this.searchText);
   }
 
 }
