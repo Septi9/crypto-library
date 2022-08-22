@@ -11,20 +11,19 @@ export class TableComponent implements OnInit {
 
   constructor(private stockMarketService: StockMarketService) {}
 
-  stockMarketData?: StockMarketData[];
+  stockMarketData: StockMarketData[] = [];
+  percents: StockMarketData[] = [];
   searchText: string = '';
+  greenOrRed?: boolean;
 
   ngOnInit(): void {
     this.stockMarketService.getData().subscribe((stockMarketData) => this.stockMarketData = stockMarketData);
   }
 
   ngDoCheck(): void {
-    // console.log('data', this.stockMarketData);
   }
 
   onEnteredTextChanged(searchValue: string) {
     this.searchText = searchValue;
-    console.log(this.searchText);
   }
-
 }

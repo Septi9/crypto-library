@@ -1,11 +1,23 @@
 <app-search (enteredTextChanged)="onEnteredTextChanged($event)"></app-search>
 <div class="container">
+    <div class="headers">
+        <div class="image element"></div>
+        <div class="name element">Coin</div>
+        <div class="price element">Price</div>
+        <div class="market-cap element">Market cap</div>
+        <div class="total-volume element">Totav volume</div>
+        <div class="price-change-percentage-24h-header element">24h</div>
+        <div class="last-updated element">Last update</div>
+    </div>
     <div class="table" *ngFor="let item of stockMarketData">
         <div class="table-wrapper" *ngIf="searchText === '' || item.name.toLowerCase().includes(searchText)">
-            <div class="id">{{item.id}}</div>
-            <div class="name">{{item.name}}</div>
-            <div class="image"><img src="{{item.image}}" alt="image"></div>
-            <div class="price">{{item.current_price}}</div>
+            <div class="image element"><img src="{{item.image}}" alt="image"></div>
+            <div class="name element">{{item.name}}</div>
+            <div class="price element">{{item.current_price | currency:'USD'}}</div>
+            <div class="market-cap element">{{item.market_cap | currency:'USD'}}</div>
+            <div class="total-volume element">{{item.total_volume | currency:'USD'}}</div>
+            <div class="price-change-percentage-24h element" [ngClass]="item.price_change_percentage_24h > 0 === true ? 'percentage-positive' : 'percentage-negative'">{{item.price_change_percentage_24h | number: '1.2-2'}}%</div>
+            <div class="last-updated element">{{item.last_updated | date: 'h:mm a, M/d/yy'}}</div>
         </div>
     </div>
 </div>
