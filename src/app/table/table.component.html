@@ -1,11 +1,18 @@
 <app-search (enteredTextChanged)="onEnteredTextChanged($event)"></app-search>
+<div class="buttons">
+    <div class="sortByName"  (click)="nameAlphabetically()">{{sortByNameContent}}</div>
+    <div class="sortByName"  (click)="priceSort()">{{sortByPriceContent}}</div>
+    <div class="sortByName"  (click)="marketCapSort()">{{sortByMarketCapContent}}</div>
+    <div class="sortByName"  (click)="totalVolumeSort()">{{sortByTotalVolumeContent}}</div>
+    <div class="sortByName"  (click)="dailySort()">{{sortBy24hContent}}</div>
+</div>
 <div class="container">
     <div class="headers">
         <div class="image element"></div>
         <div class="name element">Coin</div>
         <div class="price element">Price</div>
         <div class="market-cap element">Market cap</div>
-        <div class="total-volume element">Totav volume</div>
+        <div class="total-volume element">Total volume</div>
         <div class="price-change-percentage-24h-header element">24h</div>
         <div class="last-updated element">Last update</div>
     </div>
