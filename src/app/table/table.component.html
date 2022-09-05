@@ -16,7 +16,11 @@
         <div class="price-change-percentage-24h-header element">24h</div>
         <div class="last-updated element">Last update</div>
     </div>
-    <div class="table" *ngFor="let item of stockMarketData">
+    <div class="table" *ngFor="let item of stockMarketData | paginate:{
+        itemsPerPage: tableSize,
+        currentPage: page, 
+        totalItems: count
+    }; let i = index">
         <div class="table-wrapper" *ngIf="searchText === '' || item.name.toLowerCase().includes(searchText)">
             <div class="image element"><img src="{{item.image}}" alt="image"></div>
             <div class="name element">{{item.name}}</div>
@@ -26,5 +30,17 @@
             <div class="price-change-percentage-24h element" [ngClass]="item.price_change_percentage_24h > 0 === true ? 'percentage-positive' : 'percentage-negative'">{{item.price_change_percentage_24h | number: '1.2-2'}}%</div>
             <div class="last-updated element">{{item.last_updated | date: 'h:mm a, M/d/yy'}}</div>
         </div>
+    </div>
+    <div class="pagination">
+        <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onTableDataChange($event)"
+        ></pagination-controls>
+        <select (change)="onTableSizeChange($event)">
+            <option *ngFor="let size of tableSizes">
+                {{size}}
+            </option>
+        </select>
     </div>
 </div>

@@ -26,8 +26,26 @@ export class TableComponent implements OnInit {
   sortByTotalVolumeContent?: string = "Highest total volume";
   sortBy24hContent?: string = "Highest increase";
 
+  //pagination
+  COINS: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [10, 15, 20];
+
   ngOnInit(): void {
     this.stockMarketService.getData().subscribe((stockMarketData) => this.stockMarketData = stockMarketData);
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.ngOnInit();
+  }
+
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.ngOnInit();
   }
 
   // ngDoCheck(): void {
